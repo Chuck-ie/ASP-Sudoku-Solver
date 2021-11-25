@@ -3,7 +3,7 @@
     {
       "name": "Test",
       "setup": "conda install python=3.6 --yes; conda install -c potassco clingo --yes",
-      "run": "/usr/share/miniconda/bin/python3.6 ./test.py sudoku.lp 100 SAT",
+      "run": "/usr/share/miniconda/bin/python3.6 asp/test.py asp/sudoku.lp 100 SAT",
       "input": "",
       "output": "SUCCESS",
       "comparison": "included",

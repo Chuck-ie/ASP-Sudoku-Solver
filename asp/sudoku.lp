@@ -1,14 +1,8 @@
-val(1..9).
-subgrid_size(3).
-
-sudoku(X,Y,N)  :- initial(X,Y,N).
-{ sudoku(X,Y,N) } :- not initial(X,Y,N), val(X), val(Y), val(N).
-
-% Feld definieren
-:- S = #count { X,Y,N : sudoku(X,Y,N) }, S != K*K*K*K, subgrid_size(K).
+sudoku(X,Y,N) :- initial(X,Y,N).
+{ sudoku(X,Y,N) : N=1..9 } = 1 :- X=1..9, Y=1..9.
 
 % Jede Zelle nur maximal eine Belegung:
-:- sudoku(X,Y,N), sudoku(X,Y,N'), N != N'. 
+:- sudoku(X,Y,N), sudoku(X,Y,N'), N != N'.
 
 % Eindeutige Wertevergabe in Reihe:
 :- sudoku(X,Y,N), sudoku(X',Y,N), X != X'.
@@ -17,8 +11,8 @@ sudoku(X,Y,N)  :- initial(X,Y,N).
 :- sudoku(X,Y,N), sudoku(X,Y',N), Y!= Y'.
 
 % Eindeutige Wertevergabe im Subgrid
-:-  sudoku(X,Y,N), sudoku(X',Y',N),
-    g = (((X-1)/S)*S + (Y-1)/S), g' = (((X'-1)/S)*S + (Y'-1)/S), g == g', 
-    subgrid_size(S).
+:- sudoku(X,Y,N), sudoku(X',Y',N),
+   (((X-1)/3)*3 + (Y-1)/3) == (((X'-1)/3)*3 + (Y'-1)/3),
+   X!=X', Y!=Y'.
 
 #show sudoku/3.

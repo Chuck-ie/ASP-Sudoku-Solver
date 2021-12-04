@@ -1,7 +1,7 @@
 % initial(row, column, number)
 
 { sudoku(X,Y,Z) } :- not initial(X,Y,_), X=1..9, Y=1..9, Z=1..9.
-{ sudoku(X,Y,Z) } :- initial(X',Y',Z'), X=X', Y=Y', Z=Z'.
+{ sudoku(X,Y,Z) } :- initial(X,Y,Z).
 
 % remove a set if a row holds the same number twice
 :- sudoku(X,Y,Z), sudoku(X,Y',Z), Y!=Y'.

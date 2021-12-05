@@ -1,9 +1,6 @@
 sudoku(X,Y,N) :- initial(X,Y,N).
 { sudoku(X,Y,N) : N=1..9 } = 1 :- X=1..9, Y=1..9.
 
-% Jede Zelle nur maximal eine Belegung:
-:- sudoku(X,Y,N), sudoku(X,Y,N'), N != N'.
-
 % Eindeutige Wertevergabe in Reihe:
 :- sudoku(X,Y,N), sudoku(X',Y,N), X != X'.
 

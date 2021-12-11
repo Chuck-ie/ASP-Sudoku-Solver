@@ -1,15 +1,17 @@
-sudoku(X,Y,N) :- initial(X,Y,N).
-{ sudoku(X,Y,N) : N=1..9 } = 1 :- X=1..9, Y=1..9.
+% GENERATE: grid with possible answer sets
+sudoku(ROW,COL,NUM) :- initial(ROW,COL,NUM).
+{ sudoku(ROW,COL,NUM) : NUM=1..9 } = 1 :- ROW=1..9, COL=1..9.
 
-% Eindeutige Wertevergabe in Reihe:
-:- sudoku(X,Y,N), sudoku(X',Y,N), X != X'.
+% RULE: only allow a number once in each row
+:- sudoku(ROW,COL,NUM), sudoku(ROW',COL,NUM), ROW != ROW'.
 
-% Eindeutige Wertevergabe in Spalte:
-:- sudoku(X,Y,N), sudoku(X,Y',N), Y!= Y'.
+% RULE: only allow a number once in each column
+:- sudoku(ROW,COL,NUM), sudoku(ROW,COL',NUM), COL!= COL'.
 
-% Eindeutige Wertevergabe im Subgrid
-:- sudoku(X,Y,N), sudoku(X',Y',N),
-   (((X-1)/3)*3 + (Y-1)/3) == (((X'-1)/3)*3 + (Y'-1)/3),
-   X!=X', Y!=Y'.
+% RULE: only allow a number once in each subgrid
+:- sudoku(ROW,COL,NUM), sudoku(ROW',COL',NUM),
+   (((ROW-1)/3)*3 + (COL-1)/3) == (((ROW'-1)/3)*3 + (COL'-1)/3),
+   ROW!=ROW', COL!=COL'.
 
+% only display sudoku triplet in output for readability
 #show sudoku/3.

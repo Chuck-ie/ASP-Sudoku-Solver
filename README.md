@@ -5,6 +5,7 @@ To solve this problem, me and my groupmember used the programming language Potas
 
 Since the installation requires Anaconda you dont need to install anything afterwards like python3 for example. To use this Project as intended, you can simply clone this repository to your local folder and switch to the root directory. `Where you can find the test.py`
 You can confirm this by running the following command:
+
 Windows 10:
 ```bash
 dir test.py
